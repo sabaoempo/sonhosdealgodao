@@ -1,0 +1,98 @@
+
+body {
+    background-image: url(imagens/back.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+
+.voltar{
+    font-size: 28px;
+    font-family: 'verdana';
+    color: white;
+    float:right;
+    top: 45px;
+}
+
+ /* #login-box-interno{
+    margin: 20px;
+    border-radius: 10px;
+    border: 100px;
+    border-color: black;
+     width: 480px;
+    height: 600px;
+    position: absolute;
+    margin: 10px;
+    border-radius: 10px;
+    top:15%;
+    box-shadow: 5px 5px 5px 5px #333;
+   -webkit-box-shadow: 5px 5px 5px 5px #333;
+   -moz-box-shadow: 5px 5px 5px 5px #333; */
+   
+   /*background-image: url(Img/background1.png); */
+    
+ 
+.logo{
+    top:20%;
+    right: 80px;
+}
+.nome{
+    padding: 15px;
+    width: 350px;
+    height: 15px;
+    margin: 15px;
+    margin-left: 40%;
+}
+.senha{
+    padding: 15px;
+    width: 350px;
+    height: 15px;
+    margin: 15px;
+    margin-left: 40%;
+} 
+
+.cadastro{
+    font-family: 'Cooper Std Black';
+    margin: 25px;
+    margin-top: 10%;
+    margin-left: 40%;
+    color: rgb(116, 49, 96);
+    
+}
+
+/* .input{
+    padding: 20px;
+} */
+
+.cadastrar{
+    background-color: cadetblue;
+    border-radius: 15px;
+    width:350px;
+    height: 45px; 
+     padding: 5px; 
+    padding-left: 10px;
+    font-family: 'arial''verdana';
+    color: white;
+    margin: 15px; 
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 40%;
+}
+
+.texto{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+
+#cad{
+    top: 50%;
+    box-shadow: 5px 5px 5px 5px #333;
+    position: center;
+} 
+
+
+
