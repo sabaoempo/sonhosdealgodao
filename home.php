@@ -1,22 +1,33 @@
 <html>
-    <head>
-        <title>Sonhos de Algod達o</title>
+    <?php
+        include('functions.php');
+        $servername = 'localhost';
+        $nome_db    = "sonhosdealgodao_sonhos";
+        $user_db    = "sonhosdealgodao_dev";
+        $pass_db    = "$0nh0_d3_algod4o";
+        $db;
+
+        $db = mysqli_connect($servername, $user_db, $pass_db, $nome_db) or die(mysqli_error());
+        mysqli_select_db($db, $nome_db);
+    ?>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        
     </head>
     <?php
         session_start();
-        if($_SESSION['user']){
+        $username = $_SESSION['user'];
+        if(!isUser($username)){
+            Print '<script>alert("Você não tem acesso a esta página");</script>';
+            session_destroy();
+            Print '<script>window.location="index.php";</script>';
+            //die();
+        } else{
+            include('incluirhtml.php');
             
-        }else{
-            header("location:index.php");
         }
-        $user = $_SESSION['user'];
-    ?>
+    ?>    
     <body>
-        <h2>Home Page</h2>
-        <p>Hello <?php Print "$user"?>!</p>
+        <h3>Hello, <?php echo $username?></h3><br>
         <a href="logout.php">Sair</a><br><br>
-        <form action="add.php" methot="POST">
-            
-        </form>
     </body>
 </html>
