@@ -1,5 +1,6 @@
 <?php
     session_start();
-    session_destroy();
-    header("location:index.php");
+    unset($_SESSION['user']);
+    echo "<script>alert('Desconetando...');window.location='index.php'</script>";
+    
 ?>
