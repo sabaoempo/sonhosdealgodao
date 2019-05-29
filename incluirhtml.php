@@ -1,4 +1,19 @@
-<html>
+<?php
+        //session_start();
+        $_SESSION['cart']=isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+        $servername = 'localhost';
+        $nome_db    = 'sonhosdealgodao_sonhos';
+        $user_db    = 'sonhosdealgodao_dev';
+        $pass_db    = '$0nh0_d3_algod4o';
+        $db;
+        $db = mysqli_connect($servername, $user_db, $pass_db, $nome_db) or die(mysqli_error());
+        mysqli_query($db, "SET NAMES 'utf8'");
+        mysqli_query($db, 'SET character_set_connection=utf8');
+        mysqli_query($db, 'SET character_set_client=utf8');
+        mysqli_query($db, 'SET character_set_results=utf8');
+        
+    ?>
+    <html>
     <head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
           
            
@@ -12,13 +27,18 @@
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+           
     </head>
     <body>
-       
+        
+
+ 
+
+
         <header id="header">
             
-        <img src="imagens/header3.png" alt="Pascoa" width="100%" height="250" style="background-image: url(imagens/nav.png);">
-        
+        <img src="imagens/header3.png" alt="Pascoa" width="100%" height="250" >
+        <!--style="background-image: url(imagens/nav.png);"-->
   <!--      <nav class="navbar navbar-expand-lg " style="background-color: rgb(197, 106, 106)">-->
 
   <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
@@ -54,22 +74,34 @@
           </li>
          
           <li class="nav-item">
-            <a class="nav-link" href="#" style="color:aliceblue; font-size: 22px">Sobre n&#0243s</a>
+            <a class="nav-link" href="Sobre.php" style="color:aliceblue; font-size: 22px">Sobre N&#243s</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="color:aliceblue; font-size: 22px" href="login.php">Entre</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" style="color:aliceblue; font-size: 22px" href="register.php">Cadastre-se</a>
-            </li>
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" style="color:aliceblue; font-size: 22px" data-toggle="dropdown" href="#">Pedidos</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="CadastroProdutoTeste.php">Bombom</a>
+          <li>
+              <a class="nav-link" style="color:lightpink; font-size: 22px" href="pedir.php">Produtos</a>
+          </li>
+          <!--<li class="nav-item dropdown">-->
+          <!--    <a class="nav-link dropdown-toggle" style="color:aliceblue; font-size: 22px" data-toggle="dropdown" href="#">Pedidos</a>-->
+          <!--    <div class="dropdown-menu">-->
+                <!--<a class="dropdown-item" href="CadastroProdutoTeste.php">Bombom</a>-->
                
-                <a class="dropdown-item" href="#">Ovo</a></div>
-            </li>
+                <!--<a class="dropdown-item" href="CadastroOvoPascoa.php">Ovo</a></div>-->
+          <!--  </li>-->
+          <!--  <li class="nav-item">-->
+
+            <a class="nav-link" style="color:aliceblue;" href="cart.php"><img src="imagens/cartwhite.png" style="heigth:30px; width: 30px;" alt="Carrinho de compras"></a>
+          </li>
+          <?php
+            if(count($_SESSION['cart']) != 0){
+                $cont = count($_SESSION['cart'])/3;
+                echo "<li><p style='color: white; background-color: lightpink; border-radius: 5px; margin-top: 10px; padding: 2px'>".$cont."</p></li>";
+            }
+          ?>
         </ul>
     </header>
+
     </body>
 </html>
+<?php mysqli_close($db);?>
