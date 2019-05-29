@@ -1,6 +1,5 @@
- <?php include('functions.php'); ?>
+ <?php session_start(); include('functions.php'); ?>
  <?php include('incluirhtml.php'); ?>
-
     <html>
         <head><meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
@@ -40,10 +39,10 @@
                 </div>   
               </div>
               <div class="carousel-item">
-                <img src="imagens/bombom.jpg" alt="Bombom" width="1700" height="500">
+                <img src="imagens/bomb1.png" alt="Bombom" width="1700" height="500">
                 <div class="carousel-caption">
-                  <h3 style="font-size: 30px; color:black;" >Bombons</h3>
-                  <p style="font-size: 30px; color:black;">Venha experimentar!</p>
+                  <h3 style="font-size: 30px; color:white;" >Bombons</h3>
+                  <p style="font-size: 30px; color:white;">Venha experimentar!</p>
                 </div>   
               </div>
             </div>
@@ -56,29 +55,6 @@
           </div>
           
     </body>
-    <section id="footer">
-        <div class="container">
-          <div class="row text-center text-xs-center text-sm-left text-md-left">
-            
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-              <ul class="list-unstyled list-inline social text-center">
-                <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
-                <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
-                <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>
-                <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-google-plus"></i></a></li>
-                <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
-              </ul>
-            </div>
-            </hr>
-          </div>	
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-              <p><u><a href="https://www.nationaltransaction.com/"></a></u> </p>
-              <p class="h6">&copy Todos os direitos reservados.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank"></a></p>
-            </div>
-            </hr>
-          </div>	
-        </div>
-      </section>
+  
+     <?php include('footer.php');?>
     </html>
