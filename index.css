@@ -37,7 +37,7 @@ body {
     text-decoration: none;
   }
   
-  .dropdown {
+  /*.dropdown {
     float: left;
     overflow: hidden;
   }
@@ -81,12 +81,12 @@ body {
   
   .dropdown:hover .dropdown-content {
     display: block;
-  }
+  }*/
 
 
 
 
-  @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+  /*@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');*/
 section {
     padding: 60px 0;
 }
