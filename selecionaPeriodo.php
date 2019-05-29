@@ -2,7 +2,7 @@
 <html lang = "utf-8">
     <head>
         <meta charset = "utf-8"/>
-        <title>TESTE</title>
+        <title>Seleciona Período</title>
     </head>
     <body>
         <center>
@@ -14,5 +14,7 @@
                 <input class = "button" type = "submit" name = "Submit" value = "enviar"> 
             </form>
         </center>
+        
+        <?php include('footer.php'); ?>
     </body>
 </html>
