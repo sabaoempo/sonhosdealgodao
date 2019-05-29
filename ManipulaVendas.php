@@ -1,4 +1,5 @@
 <?php
+$id = $_GET[id];
 $servidor = 'localhost';
 $bancoDados = "sonhosdealgodao_sonhos";
 $usuario = "sonhosdealgodao_dev";
@@ -6,90 +7,81 @@ $senha = "$0nh0_d3_algod4o";
 
 $conexao = mysqli_connect($servidor, $usuario, $senha) or die(mysqli_error());
 mysqli_select_db($conexao, $bancoDados);
-$requisicao = "SELECT * FROM manupulateste";
+$requisicao = "SELECT * FROM vendasteste";
 mysqli_query($conexao, "SET NAMES 'utf8'");
 mysqli_query($conexao, 'SET character_set_connection=utf8');
 mysqli_query($conexao, 'SET character_set_client=utf8');
 mysqli_query($conexao, 'SET character_set_results=utf8');
 $query = mysqli_query($conexao, $requisicao);
 $dadosTabela = mysqli_fetch_array($query);
-
+//  session_start();
+//         if(!isAdmin($_SESSION['user'])){
+//              Print '<script>alert("Você não tem acesso a essa página");</script>';
+//              session_destroy();
+//              Print '<script>window.location="index.php";</script>';
+//          } else {
+//             // include('incluirhtml.php');
+//             $user = $_SESSION['user'];
+//         }
 ?>
 
+       
+        
+    
+<?php include('headAdmin.php') ?>
 <!DOCTYPE html>
 <html lang = "pt-br">
     <head>
+        
         <meta charset = "utf-8"/>
+        <link rel="stylesheet" type="text/css" href="manipulaVendas.css" /> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <title>Manipular Vendas</title>
+            
     </head>
     <body>
-         <center>
-            <table border = "1" width = "700" height = "150">
+         <div  class="table-css">
+         <table class="table" style="overflow-x:auto;">
+            <thead class="thead-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
-                    <th>Sabor</th>
-                    <th>Tipo</th>
-                </tr>
-                    <?php
-                        do {     
-                            echo "<tr><td>$dadosTabela[id]</td>";
-                                echo "<td>$dadosTabela[nome]</td>";
-                                echo "<td>$dadosTabela[quantidade]</td>";
-                                echo "<td>$dadosTabela[sabor]</td>";
-                                echo "<td>$dadosTabela[tipo]</td>";
-                            echo "</tr>";
+            		<th class="cabecalho">ID</th>
+            		<th class="cabecalho">Nome do Cliente</th>
+            		<th class="cabecalho">Produto</th>
+            		<th class="cabecalho">Preço</th>
+            		<th class="cabecalho">Quantidade Vendida</th>
+            		<th class="cabecalho">Preço Total</th>
+	            </tr>
+            </thead>
+            <tbody>
+                <center>
+                <?php
+                    do {     
+                        if ($dadosTabela[PrecoProduto] == NULL)
+                            $dadosTabela[PrecoProduto] = 0;
+                        if ($dadosTabela[PrecoTotalCompra] == NULL)
+                            $dadosTabela[PrecoTotalCompra] = 0;
+                        echo"<tr> <th>$dadosTabela[ID]</th>";
+                        echo"<th>$dadosTabela[NomeCliente]</th>";
+                        echo"<th>$dadosTabela[NomeProduto]</th>";
+                        echo" <th>R$$dadosTabela[PrecoProduto]</th>";
+                        echo" <th>$dadosTabela[Quantidade]</th>";
+                        echo" <th>R$$dadosTabela[PrecoTotalCompra]</th>";
+                        echo"<td class='actions text-right'>
+		                  <a href='editaVendas.php?id=".$dadosTabela['ID']."' class='btn btn-sm btn-warning'><i class='fa fa-pencil'></i> Editar</a>
+				         <a href='deletaVendas.php?id=".$dadosTabela['ID']."' class='btn btn-sm btn-danger' name='delelte'id='delete' ><i class='fa fa-trash' ></i> Excluir</a>
+		                  </td>";
+                        echo" </tr>";
+                        
                         }while($dadosTabela = mysqli_fetch_array($query));
                     ?>
-            </table>
-        </center>
-        <center>
-            <form name = "alterar" method = "POST" id = "update" action = "ManipulaVendas.php">
-                <fieldset id = "campo"> <legend>Preenchimento de campos a serem alterados:</legend>
-                    <p>ID: <input type = "number" name = "id" min = "0" max = "10" placeholder = "id"></p>
-                    <p>Nome: <input type = "text" name = "nome" size = "50" maxlength = "100" placeholder = "Nome do Cliente"></p>
-                    <p>Quantidade: <input type = "number" name = "quantidade" min = "0" max = "10" placeholder = " Quantidade"></p>
-                    <p>Sabor:<input type = "text" name = "sabor" size = "20" maxlength = "20" placeholder = "Sabor do produto"></p>
-                    <p><label for = "type">Tipo:</label></p>
-                    <select name = "tipo" id = "type">
-                        <option value = "Bombom">Bombom</option>
-                        <option value = "Ovo de Páscoa"> Ovo de Páscoa</option>
-                    </select>
-                    <input class = "button" type = "submit" name = "Submit" value = "enviar">
-                </fieldset>
-            </form>  
-        </center>
+                    </center>
+                </tbody>
+            </thead>
+        </table>
+    </div>
+    <?php include('footer.php'); ?>
     </body>
 </html>
-
-<?php
-$servidor = 'localhost';
-$bancoDados = "sonhosdealgodao_sonhos";
-$usuario = "sonhosdealgodao_dev";
-$senha = "$0nh0_d3_algod4o";
-$conexao = mysqli_connect ($servidor, $usuario, $senha, $bancoDados) or die(mysqli_error());
-
-if (isset($_POST['Submit'])){
-    manipulaProdutos();
-}
-
-function manipulaProdutos() {
-    global $conexao;
-    if (mysqli_connect_errno($conexao))
-        echo "Problemas para conectar ao banco de dados. Tente novamente";
-    else
-        echo "Conexão realizada com sucesso!";
-    $id = $_POST['id'];
-    $nomeCliente = $_POST['nome'];
-    $sabor = $_POST['sabor'];
-    $quantidade = $_POST['quantidade'];
-    $tipo = $_POST['tipo'];
-    $query = "UPDATE manupulateste SET nome ='$nomeCliente', quantidade = '$quantidade', sabor = '$sabor', tipo = '$tipo' WHERE id ='$id'";
-    mysqli_query($conexao, "SET NAMES 'utf8'");
-    mysqli_query($conexao, 'SET character_set_connection=utf8');
-    mysqli_query($conexao, 'SET character_set_client=utf8');
-    mysqli_query($conexao, 'SET character_set_results=utf8');
-    mysqli_query($conexao, $query);
-    //mysqli_close( $conexao);
-}
-?>
