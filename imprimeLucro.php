@@ -1,4 +1,5 @@
 <?php
+include('headAdmin.php'); 
 $servidor = 'localhost';
 $bancoDados = "sonhosdealgodao_sonhos";
 $usuario = "sonhosdealgodao_dev";
@@ -21,12 +22,13 @@ function selecionaPeriodo() {
     mysqli_query($conexao, 'SET character_set_client=utf8');
     mysqli_query($conexao, 'SET character_set_results=utf8');
     $dataBusca = $_POST['periodo'];
-    echo "#########$dataBusca##############";
+    echo "<h1 style='font-family: Arial,sans-serif;
+    font-weight: bold;  font-size: 35px;padding: 20px;'>$dataBusca</h1>";
     if ($dataBusca == "Uma Semana")
         $intervalo = "INTERVAL 7 DAY";
     else if ($dataBusca == "Um Mês")
         $intervalo = "INTERVAL 1 MONTH";
-    $requisicao = "SELECT * FROM calcula_lucro WHERE data_venda BETWEEN (CURRENT_DATE() - $intervalo) AND (CURRENT_DATE())";
+    $requisicao = "SELECT * FROM vendasteste WHERE dataVenda BETWEEN (CURRENT_DATE() - $intervalo) AND (CURRENT_DATE())";
     return $requisicao;
 }
 
@@ -36,9 +38,12 @@ function calculaTotal($requisicao) {
     $precos = mysqli_fetch_array($query);
     $total = 0;
     do {
-        echo "<p>$total + $precos[preco]";
-        $total += $precos[preco];
-        echo " = $total</p>";
+        if ($precos['PrecoTotalCompra'] == NULL) {
+            $total += $precos['PrecoProduto'] * $precos['Quantidade'];
+            echo "Estou aqui!";
+        }
+        else
+            $total += $precos['PrecoTotalCompra'];
     }while ($precos = mysqli_fetch_array($query));
     return $total;
 }
@@ -48,38 +53,63 @@ function calculaTotal($requisicao) {
 <html lang = "pt-br">
     <head>
         <meta charset = "utf-8"/>
+         <link rel="stylesheet" type="text/css" href="produtoPreco.css" />
+         <title>Imprimir Lucro</title>
     </head>
     <body>
          <center>
-            <table border = "1" width = "700" height = "100">
-                <tr>
+           <div class="content">      
+            
+              <div  class="table-css">
+                          <table class="table" style="overflow-x:auto;">
+                            <thead class="thead-dark">
+                              <tr class="table-text">
+             
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Sabor</th>
+                    <th>Produto</th></th>
                     <th>Tipo</th>
-                    <th>Data</th>
+                    <th>Data de Venda</th>
                     <th>Preço</th>
+                    <th>Quantidade</th>
                 </tr>
+                 </thead>
+                            <tbody>
                     <?php
                         do {     
-                            echo "<tr><td>$precos[id]</td>";
-                                echo "<td>$precos[nome]</td>";
-                                echo "<td>$precos[sabor]</td>";
+                            echo "<tr><td>$precos[ID]</td>";
+                                echo "<td>$precos[NomeCliente]</td>";
+                                echo "<td>$precos[NomeProduto]</td>";
                                 echo "<td>$precos[tipo]</td>";
-                                echo "<td>$precos[data_venda]</td>";
-                                echo "<td>$precos[preco]</td>";
+                                echo "<td>$precos[dataVenda]</td>";
+                                echo "<td>R$$precos[PrecoProduto]</td>";
+                                echo "<td>$precos[Quantidade]</td>";
                                 echo "</tr>";
                         }while($precos = mysqli_fetch_array($query));
                     ?>
-            </table>
-            <table border = "1" width = "200" height = "50">
-                <tr>
-                    <th>Lucro Total</th>
+            </tbody>
+                          </table>
+                        </div>
+            <!--<table border = "1" width = "200" height = "50">-->
+                 <div class="content">      
+            
+              <div  class="table-css">
+                          <table class="table" style="overflow-x:auto;width:200; height:0;">
+                            <thead class="thead-dark">
+                              <tr class="table-text">
+                
+                    <th>Arrecadamento Total</th>
+                     </tr>
+                 </thead>
+                            <tbody>
                     <?php
-                        echo "<td>$total</td>";
+                        echo "<td>R$$total</td>";
                     ?>
-                </tr>
-            </table>
+                 </tbody>
+                          </table>
+                        </div>
         </center>
+        
+        <?php include('footer.php'); mysqli_close($conexao);?>
     </body>
 </html>
