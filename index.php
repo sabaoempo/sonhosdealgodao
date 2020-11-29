@@ -25,7 +25,7 @@
             </ul>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="imagens/Paﾌ《coa.png" alt="Pascoa" width="1700" height="500">
+                <img src="imagens/Pascoa.png" alt="Pascoa" width="1700" height="500">
                 <div class="carousel-caption"  style="right: -21%">
                   <h3 style="font-size: 30px;">Pﾃ｡scoa</h3>
                   <p style="font-size: 45px;">Venha personalizar seu produto</p>
@@ -34,7 +34,7 @@
               <div class="carousel-item">
                 <img src="imagens/ovos.jpg" alt="Ovo" width="1700" height="500">
                 <div class="carousel-caption" style="right: -50%; color: #B22222">
-                    <h3 style="font-size: 30px;">Pﾃ｡scoa</h3>
+                    <h3 style="font-size: 30px;">Páscoa</h3>
                     <p style="font-size: 30px;">Ovos de colher</p>
                 </div>   
               </div>

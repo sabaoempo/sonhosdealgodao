@@ -37,7 +37,7 @@
 
         <header id="header">
             
-        <img src="imagens/header3.png" alt="Pascoa" width="100%" height="250" >
+        <img src="imagens/header3.jpg" alt="Pascoa" width="100%" height="250" >
         <!--style="background-image: url(imagens/nav.png);"-->
   <!--      <nav class="navbar navbar-expand-lg " style="background-color: rgb(197, 106, 106)">-->
 
@@ -74,7 +74,7 @@
           </li>
          
           <li class="nav-item">
-            <a class="nav-link" href="Sobre.php" style="color:aliceblue; font-size: 22px">Sobre N&#243s</a>
+            <a class="nav-link" href="Sobre.php" style="color:aliceblue; font-size: 22px">Sobre Nós</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="color:aliceblue; font-size: 22px" href="login.php">Entre</a>
@@ -91,7 +91,7 @@
           <!--  </li>-->
           <!--  <li class="nav-item">-->
 
-            <a class="nav-link" style="color:aliceblue;" href="cart.php"><img src="imagens/cartwhite.png" style="heigth:30px; width: 30px;" alt="Carrinho de compras"></a>
+            <a class="nav-link" style="color:aliceblue;" href="cart.php"><img src="imagens/cart.jpg" style="heigth:30px; width: 30px;" alt="Carrinho de compras"></a>
           </li>
           <?php
             if(count($_SESSION['cart']) != 0){

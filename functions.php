@@ -1,5 +1,5 @@
 <?php
-$db = mysqli_connect('localhost', 'sonhosdealgodao_dev', '$0nh0_d3_algod4o', 'sonhosdealgodao_sonhos') or die(mysqli_error());
+$db = mysqli_connect('localhost', 'sonhosdealgodao_dev', '$0nh0_d3_algod4o', 'sonhosdealgodao_sonhos') or die(mysqli_error($db));
 
 
 if (isset($_POST['register_btn'])) {
